@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:send_money_app/utils/nav_routes.dart';
 import 'package:send_money_app/views/screens/dashboard.dart';
-import 'package:send_money_app/views/screens/login_screen.dart';
+import 'package:send_money_app/views/screens/login.dart';
+import 'package:send_money_app/views/screens/send_money.dart';
 
 void main() {
   runApp(const MyApp());
@@ -36,7 +37,8 @@ class MyApp extends StatelessWidget {
       initialRoute: NavRoutes.login,
       routes: {
         NavRoutes.login: (context) => const LoginScreen(),
-        NavRoutes.dashboard :(context) => const DashboardScreen()
+        NavRoutes.dashboard :(context) => const DashboardScreen(),
+        NavRoutes.sendMoney :(context) => const SendMoneyScreen()
       },
     );
   }

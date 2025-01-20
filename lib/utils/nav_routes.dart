@@ -1,6 +1,6 @@
 class NavRoutes {
   static const String login = "/login";
   static const String dashboard = "/dashboard";
-  static const String transferMoney = "/transferMoney";
-  static const String transactionHistory = "/transactionHistory";
+  static const String sendMoney = "/sendMoney";
+  static const String viewTransactions = "/viewTransactions";
 }

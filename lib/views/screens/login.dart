@@ -33,7 +33,7 @@ class _LoginScreenState extends State<LoginScreen> {
             TextField(
               controller: usernameController,
               decoration: InputDecoration(
-                labelText: "Email",
+                labelText: "Username",
                 border: const OutlineInputBorder().copyWith(
                   borderSide: const BorderSide(width: 1.0)
                 )

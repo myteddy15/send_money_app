@@ -10,7 +10,7 @@ class DashboardScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(),
       body: Padding(
-        padding: const EdgeInsets.all(15),
+        padding: const EdgeInsets.all(20),
         child: Column(
           children: [
             Container(
@@ -63,7 +63,7 @@ class DashboardScreen extends StatelessWidget {
               child: ElevatedButton.icon(
                 icon: const FaIcon(FontAwesomeIcons.paperPlane),
                 onPressed: () {
-                  Navigator.pushReplacementNamed(context, NavRoutes.dashboard);
+                  Navigator.pushNamed(context, NavRoutes.sendMoney);
                 },
                 label: Text(
                   "Send Money",
@@ -83,7 +83,7 @@ class DashboardScreen extends StatelessWidget {
                   Navigator.pushReplacementNamed(context, NavRoutes.dashboard);
                 },
                 label: Text(
-                  "Transaction History",
+                  "View Transactions",
                   style: const TextStyle().copyWith(
                     fontSize: 16
                   ),
