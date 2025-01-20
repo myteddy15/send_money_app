@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:send_money_app/utils/nav_routes.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -24,8 +26,10 @@ class _LoginScreenState extends State<LoginScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            const Text("SEND MONEY"),
-            const SizedBox(height: 20),
+            const FaIcon(
+              FontAwesomeIcons.moneyBill1Wave,
+              size: 120),
+            const SizedBox(height: 50),
             TextField(
               controller: usernameController,
               decoration: InputDecoration(
@@ -45,13 +49,15 @@ class _LoginScreenState extends State<LoginScreen> {
                 )
               ),
             ),
-            const SizedBox(height: 20),
-            const SizedBox(
+            const SizedBox(height: 170),
+            SizedBox(
               width: double.infinity,
               height: 50,
               child: ElevatedButton(
-                onPressed: null,
-                child: Text("Log in")),
+                onPressed: () {
+                  Navigator.pushReplacementNamed(context, NavRoutes.dashboard);
+                },
+                child: const Text("Log in")),
             )
           ],
         ),

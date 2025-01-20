@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:send_money_app/utils/nav_routes.dart';
+import 'package:send_money_app/views/screens/dashboard.dart';
 import 'package:send_money_app/views/screens/login_screen.dart';
 
 void main() {
@@ -14,7 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xff2ff29e)),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xff00b464)),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
             backgroundColor: const Color(0xff00b464),
@@ -26,9 +28,16 @@ class MyApp extends StatelessWidget {
             )
           )
         ),
-        useMaterial3: true,
+        iconTheme: const IconThemeData().copyWith(
+          color: const Color(0xff00b464)
+        ),
+        useMaterial3: true
       ),
-      home: const LoginScreen(),
+      initialRoute: NavRoutes.login,
+      routes: {
+        NavRoutes.login: (context) => const LoginScreen(),
+        NavRoutes.dashboard :(context) => const DashboardScreen()
+      },
     );
   }
 }
