@@ -80,7 +80,7 @@ class DashboardScreen extends StatelessWidget {
               child: ElevatedButton.icon(
                 icon: const FaIcon(FontAwesomeIcons.list),
                 onPressed: () {
-                  Navigator.pushReplacementNamed(context, NavRoutes.dashboard);
+                  Navigator.pushNamed(context, NavRoutes.viewTransactions);
                 },
                 label: Text(
                   "View Transactions",
