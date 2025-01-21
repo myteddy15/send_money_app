@@ -6,12 +6,14 @@ class CustomTextField extends StatelessWidget {
   final TextEditingController controller;
   final bool? obscureText;
   final List<TextInputFormatter>? inputFormatters;
+  final Function(String)? onChanged;
 
   const CustomTextField({super.key, 
     required this.labelText, 
     required this.controller, 
     this.obscureText, 
-    this.inputFormatters});
+    this.inputFormatters,
+    this.onChanged});
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +21,7 @@ class CustomTextField extends StatelessWidget {
       controller: controller,
       obscureText: obscureText ?? false,
       inputFormatters: inputFormatters,
+      onChanged: onChanged,
       decoration: InputDecoration(
         labelText: labelText,
         border: const OutlineInputBorder().copyWith(
