@@ -4,7 +4,7 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:send_money_app/cubits/login_cubit/login_cubit.dart';
-import 'package:send_money_app/models/login_response.dart';
+import 'package:send_money_app/models/response/login_response.dart';
 
 import '../mock_generator.mocks.dart';
 

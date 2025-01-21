@@ -1,31 +1,44 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:send_money_app/cubits/dashboard_cubit/dashboard_cubit.dart';
+import 'package:send_money_app/repositories/dashboard_repository.dart';
 import 'package:send_money_app/utils/nav_routes.dart';
+import 'package:http/http.dart' as http;
 
 import '../widgets/custom_elavated_button.dart';
 
 class DashboardScreen extends StatelessWidget {
-  const DashboardScreen({super.key});
+  late DashboardRepository? dashboardRepository;
+
+  DashboardScreen({super.key, DashboardRepository? dashboardRepository}) {
+    this.dashboardRepository = dashboardRepository ?? DashboardRepository(http.Client());
+  }
 
   @override
   Widget build(BuildContext context) {
-    final dashboardCubit = DashboardCubit();
+    final dashboardCubit = DashboardCubit(dashboardRepository);
 
     return Scaffold(
       appBar: AppBar(),
       body: BlocProvider(
-        create: (context) => dashboardCubit,
+        create: (context) => dashboardCubit..fetchWalletBalance(),
         child: Padding(
           padding: const EdgeInsets.all(20),
           child: BlocBuilder<DashboardCubit, DashboardState>(
             builder: (context, state) {
-              return Column(children: [
-                Container(
-                  width: double.infinity,
-                  height: 150,
-                  decoration: BoxDecoration(
+              if (state.isLoading) {
+                return const Center(
+                  child: CircularProgressIndicator()
+                );
+              } else {
+                return Column(children: [
+                  Container(
+                    width: double.infinity,
+                    height: 150,
+                    decoration: BoxDecoration(
                       color: Colors.white70,
                       borderRadius: BorderRadius.circular(5),
                       boxShadow: [
@@ -35,9 +48,9 @@ class DashboardScreen extends StatelessWidget {
                           spreadRadius: 2,
                         )
                       ]),
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 20),
-                    child: Column(
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 20),
+                      child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
@@ -50,7 +63,7 @@ class DashboardScreen extends StatelessWidget {
                             children: [
                               const FaIcon(FontAwesomeIcons.pesoSign),
                               Text(
-                                state.showBalance ? "100000" : "*******",
+                                state.showBalance ? "${state.dashboardResponse?.wallatBalance}" : "*******",
                                 style: const TextStyle().copyWith(
                                     fontSize: 50,
                                     fontWeight: FontWeight.bold,
@@ -62,25 +75,26 @@ class DashboardScreen extends StatelessWidget {
                             ],
                           )
                         ]),
+                    ),
                   ),
-                ),
-                const SizedBox(height: 50),
-                CustomElavatedButton(
-                    height: 50,
-                    icon: const FaIcon(FontAwesomeIcons.paperPlane),
-                    callback: () {
-                      Navigator.pushNamed(context, NavRoutes.sendMoney);
-                    },
-                    labelText: "Send Money"),
-                const SizedBox(height: 20),
-                CustomElavatedButton(
-                    height: 50,
-                    icon: const FaIcon(FontAwesomeIcons.list),
-                    callback: () {
-                      Navigator.pushNamed(context, NavRoutes.viewTransactions);
-                    },
-                    labelText: "View Transactions")
-              ]);
+                  const SizedBox(height: 50),
+                  CustomElavatedButton(
+                      height: 50,
+                      icon: const FaIcon(FontAwesomeIcons.paperPlane),
+                      callback: () {
+                        Navigator.pushNamed(context, NavRoutes.sendMoney);
+                      },
+                      labelText: "Send Money"),
+                  const SizedBox(height: 20),
+                  CustomElavatedButton(
+                      height: 50,
+                      icon: const FaIcon(FontAwesomeIcons.list),
+                      callback: () {
+                        Navigator.pushNamed(context, NavRoutes.viewTransactions);
+                      },
+                      labelText: "View Transactions")
+                ]);
+              }
             },
           ),
         ),

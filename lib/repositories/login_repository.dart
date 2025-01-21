@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:send_money_app/models/login_payload.dart';
-import 'package:send_money_app/models/login_response.dart';
+import 'package:send_money_app/models/payload/login_payload.dart';
+import 'package:send_money_app/models/response/login_response.dart';
 
 class LoginRepository {
 

@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
-import 'package:send_money_app/models/login_payload.dart';
+import 'package:send_money_app/models/payload/login_payload.dart';
 import 'package:send_money_app/repositories/login_repository.dart';
 import '../mock_generator.mocks.dart';
 
