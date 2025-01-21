@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:send_money_app/utils/nav_routes.dart';
 
+import '../widgets/custom_elavated_button.dart';
+
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});
 
@@ -57,38 +59,22 @@ class DashboardScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 50),
-            SizedBox(
-              width: double.maxFinite,
-              height: 50,
-              child: ElevatedButton.icon(
-                icon: const FaIcon(FontAwesomeIcons.paperPlane),
-                onPressed: () {
-                  Navigator.pushNamed(context, NavRoutes.sendMoney);
-                },
-                label: Text(
-                  "Send Money",
-                  style: const TextStyle().copyWith(
-                    fontSize: 16
-                  ),
-                ),
-              ),
+            CustomElavatedButton(
+              height: 50, 
+              icon: const FaIcon(FontAwesomeIcons.paperPlane),
+              callback: () {
+                Navigator.pushNamed(context, NavRoutes.sendMoney);
+              }, 
+              labelText: "Send Money"
             ),
             const SizedBox(height: 20),
-            SizedBox(
-              width: double.maxFinite,
-              height: 50,
-              child: ElevatedButton.icon(
-                icon: const FaIcon(FontAwesomeIcons.list),
-                onPressed: () {
-                  Navigator.pushNamed(context, NavRoutes.viewTransactions);
-                },
-                label: Text(
-                  "View Transactions",
-                  style: const TextStyle().copyWith(
-                    fontSize: 16
-                  ),
-                ),
-              ),
+            CustomElavatedButton(
+              height: 50, 
+              icon: const FaIcon(FontAwesomeIcons.list),
+              callback: () {
+                Navigator.pushNamed(context, NavRoutes.viewTransactions);
+              }, 
+              labelText: "View Transactions"
             )
         ]),
       ),

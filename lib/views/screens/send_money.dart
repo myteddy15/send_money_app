@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:send_money_app/utils/nav_routes.dart';
+import 'package:send_money_app/views/widgets/header_text.dart';
+
+import '../widgets/custom_elavated_button.dart';
+import '../widgets/custom_text_field.dart';
 
 class SendMoneyScreen extends StatelessWidget {
   const SendMoneyScreen({super.key});
@@ -16,42 +20,21 @@ class SendMoneyScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              "Send Money",
-              textAlign: TextAlign.start,
-              style: const TextStyle().copyWith(
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
-                color: Colors.black.withOpacity(0.75)
-              ),
-            ),
+            const HeaderText(text: "Send Money"),
             const SizedBox(height: 50),
-            TextField(
-              controller: sendMoneyController,
-              decoration: InputDecoration(
-                labelText: "Amount",
-                border: const OutlineInputBorder().copyWith(
-                  borderSide: const BorderSide(width: 1.0)
-                )
-              ),
+            CustomTextField(
+              labelText: "Amount", 
+              controller: sendMoneyController
             ),
             const SizedBox(height: 20),
-            SizedBox(
-              width: double.maxFinite,
-              height: 50,
-              child: ElevatedButton.icon(
-                icon: const FaIcon(FontAwesomeIcons.paperPlane),
-                onPressed: () {
-                  Navigator.pushNamed(context, NavRoutes.sendMoney);
-                },
-                label: Text(
-                  "Submit",
-                  style: const TextStyle().copyWith(
-                    fontSize: 16
-                  ),
-                ),
-              ),
-            ),
+            CustomElavatedButton(
+              height: 50, 
+              icon: const FaIcon(FontAwesomeIcons.paperPlane),
+              callback: () {
+                Navigator.pushNamed(context, NavRoutes.sendMoney);
+              }, 
+              labelText: "Submit"
+            )
           ],
         ),
       ),
