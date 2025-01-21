@@ -1,22 +1,30 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:send_money_app/cubits/login_cubit/login_cubit.dart';
+import 'package:send_money_app/repositories/login_repository.dart';
 import 'package:send_money_app/utils/nav_routes.dart';
 import 'package:send_money_app/views/widgets/custom_elavated_button.dart';
 import 'package:send_money_app/views/widgets/custom_text_field.dart';
+import 'package:http/http.dart' as http;
 
 class LoginScreen extends StatelessWidget {
 
-  const LoginScreen({super.key}) ;
+  late LoginRepository? loginRepository;
+
+  LoginScreen({super.key, LoginRepository? loginRepository}) {
+    this.loginRepository = loginRepository ?? LoginRepository(http.Client());
+  } 
 
   @override
   Widget build(BuildContext context) {
     final usernameController = TextEditingController();
     final passwordController = TextEditingController();
 
-    final loginCubit = LoginCubit();
+    final loginCubit = LoginCubit(loginRepository);
 
     return Scaffold(
         appBar: AppBar(

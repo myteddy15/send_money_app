@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: NavRoutes.login,
       routes: {
-        NavRoutes.login : (context) => const LoginScreen(),
+        NavRoutes.login : (context) => LoginScreen(),
         NavRoutes.dashboard : (context) => const DashboardScreen(),
         NavRoutes.sendMoney : (context) => const SendMoneyScreen(),
         NavRoutes.viewTransactions : (context) => const ViewTransactionsScreen()

@@ -2,12 +2,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../repositories/login_repository.dart';
-import 'package:http/http.dart' as http;
 
 part 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
-  LoginCubit() : super(const LoginState(enableButton: false, isLoading: false));
+  LoginRepository? loginRepository;
+
+  LoginCubit(this.loginRepository): super(const LoginState(enableButton: false, isLoading: false));
 
   String _userName = "";
   String _password = "";
@@ -29,7 +30,7 @@ class LoginCubit extends Cubit<LoginState> {
   Future<void> performAuth() async {
     emit(state.copyWith(isLoading: true));
     try {
-      await LoginRepository(http.Client()).login(userName: _userName, password: _password);
+      await loginRepository?.login(userName: _userName, password: _password);
       emit(state.copyWith(isLoginSuccess: true, isLoading: false));
     } catch (e) {
       emit(state.copyWith(isLoading: false));
