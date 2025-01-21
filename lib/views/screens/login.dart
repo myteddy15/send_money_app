@@ -16,51 +16,84 @@ class LoginScreen extends StatelessWidget {
     final usernameController = TextEditingController();
     final passwordController = TextEditingController();
 
-    final _loginCubit = LoginCubit();
+    final loginCubit = LoginCubit();
 
     return Scaffold(
         appBar: AppBar(
           title: const Text(""),
         ),
         body: BlocProvider(
-          create: (context) => _loginCubit,
+          create: (context) => loginCubit,
           child: Padding(
             padding: const EdgeInsets.all(20),
-            child: BlocBuilder<LoginCubit, LoginState>(
+            child: BlocConsumer<LoginCubit, LoginState>(
+              listener: (context, state) {
+                if (state.isLoginSuccess == true) {
+                  Navigator.pushReplacementNamed(context, NavRoutes.dashboard);
+                }
+              },
               builder: (context, state) {
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    const FaIcon(FontAwesomeIcons.moneyBill1Wave, size: 120),
-                    const SizedBox(height: 50),
-                    CustomTextField(
+                if (state.isLoading) {
+                  return const Center(
+                    child: CircularProgressIndicator()
+                  );
+                } else {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      const FaIcon(FontAwesomeIcons.moneyBill1Wave, size: 120),
+                      const SizedBox(height: 50),
+                      CustomTextField(
                         labelText: "Username",
                         onChanged: ((value) {
-                          _loginCubit.userNameChangedValue(value);
+                          loginCubit.userNameChangedValue(value);
                         }),
                         inputFormatters: [
                           FilteringTextInputFormatter.allow(
                               RegExp("[0-9a-zA-Z]"))
                         ],
                         controller: usernameController),
-                    const SizedBox(height: 10),
-                    CustomTextField(
+                      const SizedBox(height: 10),
+                      CustomTextField(
                         labelText: "Password",
                         onChanged: ((value) {
-                          _loginCubit.passwordChangedValue(value);
+                          loginCubit.passwordChangedValue(value);
                         }),
                         obscureText: true,
                         controller: passwordController),
-                    const SizedBox(height: 170),
-                    CustomElavatedButton(
+                      const SizedBox(height: 170),
+                      CustomElavatedButton(
                         height: 50,
-                        callback: state.enableButton ? () {
-                          Navigator.pushReplacementNamed(context, NavRoutes.dashboard);
+                        callback: state.enableButton ? () async {
+                          try { 
+                            await loginCubit.performAuth();
+                          } catch (e) {
+                            if (context.mounted) {
+                              showDialog(context: context, builder: (context) {
+                                return AlertDialog(
+                                  title: const Text("Error"),
+                                  content: const Text("Authentication error"),
+                                  actions: [
+                                    TextButton(
+                                      style: TextButton.styleFrom(
+                                        textStyle: Theme.of(context).textTheme.labelLarge,
+                                      ),
+                                      child: const Text('Okay'),
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                    ),
+                                  ],
+                                );
+                              });
+                            }
+                          }
                         } : null,
                         labelText: "Log in")
-                  ],
-                );
+                    ],
+                  );
+                }
               },
             ),
           ),

@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:send_money_app/cubits/send_money_cubit/send_money_cubit.dart';
-import 'package:send_money_app/utils/nav_routes.dart';
 import 'package:send_money_app/views/widgets/header_text.dart';
 
 import '../widgets/custom_elavated_button.dart';
