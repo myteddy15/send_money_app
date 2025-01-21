@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:send_money_app/utils/nav_routes.dart';
 import 'package:send_money_app/views/widgets/custom_elavated_button.dart';
@@ -34,11 +35,15 @@ class _LoginScreenState extends State<LoginScreen> {
             const SizedBox(height: 50),
             CustomTextField(
               labelText: "Username", 
+              inputFormatters: [
+                FilteringTextInputFormatter.allow(RegExp("[0-9a-zA-Z]"))
+              ],
               controller: usernameController
             ),
             const SizedBox(height: 10),
             CustomTextField(
               labelText: "Password", 
+              obscureText: true,
               controller: passwordController
             ),
             const SizedBox(height: 170),
