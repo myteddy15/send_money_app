@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
@@ -24,7 +22,6 @@ void main() {
   late Uri url;
 
   setUpAll(() {
-    HttpOverrides.global = null;
     mockClient = MockClient();
     url = Uri.parse("https://dummyjson.com/c/9860-6649-4bc4-a998");
     dashboardRepository = DashboardRepository(mockClient);
