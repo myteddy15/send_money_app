@@ -49,8 +49,8 @@ class _FakeStreamedResponse_1 extends _i1.SmartFake
         );
 }
 
-class _FakeClient_2 extends _i1.SmartFake implements _i2.Client {
-  _FakeClient_2(
+class _FakeLoginResponse_2 extends _i1.SmartFake implements _i3.LoginResponse {
+  _FakeLoginResponse_2(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -59,19 +59,9 @@ class _FakeClient_2 extends _i1.SmartFake implements _i2.Client {
         );
 }
 
-class _FakeLoginResponse_3 extends _i1.SmartFake implements _i3.LoginResponse {
-  _FakeLoginResponse_3(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-          parent,
-          parentInvocation,
-        );
-}
-
-class _FakeDashboardResponse_4 extends _i1.SmartFake
+class _FakeDashboardResponse_3 extends _i1.SmartFake
     implements _i4.DashboardResponse {
-  _FakeDashboardResponse_4(
+  _FakeDashboardResponse_3(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -406,28 +396,6 @@ class MockClient extends _i1.Mock implements _i2.Client {
 /// See the documentation for Mockito's code generation for more information.
 class MockLoginRepository extends _i1.Mock implements _i9.LoginRepository {
   @override
-  _i2.Client get httpClient => (super.noSuchMethod(
-        Invocation.getter(#httpClient),
-        returnValue: _FakeClient_2(
-          this,
-          Invocation.getter(#httpClient),
-        ),
-        returnValueForMissingStub: _FakeClient_2(
-          this,
-          Invocation.getter(#httpClient),
-        ),
-      ) as _i2.Client);
-
-  @override
-  set httpClient(_i2.Client? _httpClient) => super.noSuchMethod(
-        Invocation.setter(
-          #httpClient,
-          _httpClient,
-        ),
-        returnValueForMissingStub: null,
-      );
-
-  @override
   _i5.Future<_i3.LoginResponse> login({
     required String? userName,
     required String? password,
@@ -441,7 +409,7 @@ class MockLoginRepository extends _i1.Mock implements _i9.LoginRepository {
             #password: password,
           },
         ),
-        returnValue: _i5.Future<_i3.LoginResponse>.value(_FakeLoginResponse_3(
+        returnValue: _i5.Future<_i3.LoginResponse>.value(_FakeLoginResponse_2(
           this,
           Invocation.method(
             #login,
@@ -453,7 +421,7 @@ class MockLoginRepository extends _i1.Mock implements _i9.LoginRepository {
           ),
         )),
         returnValueForMissingStub:
-            _i5.Future<_i3.LoginResponse>.value(_FakeLoginResponse_3(
+            _i5.Future<_i3.LoginResponse>.value(_FakeLoginResponse_2(
           this,
           Invocation.method(
             #login,
@@ -473,35 +441,13 @@ class MockLoginRepository extends _i1.Mock implements _i9.LoginRepository {
 class MockDashboardRepository extends _i1.Mock
     implements _i10.DashboardRepository {
   @override
-  _i2.Client get httpClient => (super.noSuchMethod(
-        Invocation.getter(#httpClient),
-        returnValue: _FakeClient_2(
-          this,
-          Invocation.getter(#httpClient),
-        ),
-        returnValueForMissingStub: _FakeClient_2(
-          this,
-          Invocation.getter(#httpClient),
-        ),
-      ) as _i2.Client);
-
-  @override
-  set httpClient(_i2.Client? _httpClient) => super.noSuchMethod(
-        Invocation.setter(
-          #httpClient,
-          _httpClient,
-        ),
-        returnValueForMissingStub: null,
-      );
-
-  @override
   _i5.Future<_i4.DashboardResponse> fetchWalletBalance() => (super.noSuchMethod(
         Invocation.method(
           #fetchWalletBalance,
           [],
         ),
         returnValue:
-            _i5.Future<_i4.DashboardResponse>.value(_FakeDashboardResponse_4(
+            _i5.Future<_i4.DashboardResponse>.value(_FakeDashboardResponse_3(
           this,
           Invocation.method(
             #fetchWalletBalance,
@@ -509,7 +455,7 @@ class MockDashboardRepository extends _i1.Mock
           ),
         )),
         returnValueForMissingStub:
-            _i5.Future<_i4.DashboardResponse>.value(_FakeDashboardResponse_4(
+            _i5.Future<_i4.DashboardResponse>.value(_FakeDashboardResponse_3(
           this,
           Invocation.method(
             #fetchWalletBalance,

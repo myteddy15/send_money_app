@@ -16,7 +16,7 @@ class LoginScreen extends StatelessWidget {
   late LoginRepository? loginRepository;
 
   LoginScreen({super.key, LoginRepository? loginRepository}) {
-    this.loginRepository = loginRepository ?? LoginRepository(http.Client());
+    this.loginRepository = loginRepository ?? LoginRepositoryImpl(http.Client());
   } 
 
   @override

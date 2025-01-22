@@ -14,7 +14,7 @@ class DashboardScreen extends StatelessWidget {
   late DashboardRepository? dashboardRepository;
 
   DashboardScreen({super.key, DashboardRepository? dashboardRepository}) {
-    this.dashboardRepository = dashboardRepository ?? DashboardRepository(http.Client());
+    this.dashboardRepository = dashboardRepository ?? DashboardRepositoryImpl(http.Client());
   }
 
   @override

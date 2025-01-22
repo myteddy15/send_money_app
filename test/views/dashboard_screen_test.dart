@@ -24,7 +24,7 @@ void main() {
   setUpAll(() {
     mockClient = MockClient();
     url = Uri.parse("https://dummyjson.com/c/9860-6649-4bc4-a998");
-    dashboardRepository = DashboardRepository(mockClient);
+    dashboardRepository = DashboardRepositoryImpl(mockClient);
   });
 
   

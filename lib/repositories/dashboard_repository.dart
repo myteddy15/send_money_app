@@ -3,11 +3,15 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:send_money_app/models/response/dashboard_response.dart';
 
-class DashboardRepository {
+abstract class DashboardRepository {
+  Future<DashboardResponse> fetchWalletBalance();
+}
+
+class DashboardRepositoryImpl extends DashboardRepository {
 
   http.Client httpClient;
 
-  DashboardRepository(this.httpClient);
+  DashboardRepositoryImpl(this.httpClient);
 
   Future<DashboardResponse> fetchWalletBalance() async {
     final url = Uri.parse("https://dummyjson.com/c/9860-6649-4bc4-a998");

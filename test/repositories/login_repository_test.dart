@@ -27,7 +27,7 @@ void main() {
 
   setUpAll(() {
     mockClient = MockClient();
-    loginRepo = LoginRepository(mockClient);
+    loginRepo = LoginRepositoryImpl(mockClient);
     url = Uri.parse("https://dummyjson.com/auth/login");
     loginPayload = LoginPayload(username: "username", password: "password");
   });

@@ -4,12 +4,17 @@ import 'package:http/http.dart' as http;
 import 'package:send_money_app/models/payload/login_payload.dart';
 import 'package:send_money_app/models/response/login_response.dart';
 
-class LoginRepository {
+abstract class LoginRepository {
+  Future<LoginResponse> login({required String userName, required String password});
+}
+
+class LoginRepositoryImpl extends LoginRepository{
 
   http.Client httpClient;
 
-  LoginRepository(this.httpClient);
+  LoginRepositoryImpl(this.httpClient);
 
+  @override
   Future<LoginResponse> login({required String userName, required String password}) async {
     final url = Uri.parse("https://dummyjson.com/auth/login");
     final loginPayload = LoginPayload(username: userName, password: password);
