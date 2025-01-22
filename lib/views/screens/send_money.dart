@@ -35,9 +35,15 @@ class SendMoneyScreen extends StatelessWidget {
           child: BlocConsumer<SendMoneyCubit, SendMoneyState>(
             listener: (context, state) {
               if (state.sendMoneyResponse != null) {
-                ModalSheet().showbottomModalSheet(context, "${sendMoneyCubit.amount} sent successfully!");
+                ModalSheet().showbottomModalSheet(
+                  context, 
+                  "${sendMoneyCubit.amount} sent successfully!"
+                );
               } else if (state.sendMoneyError != null) {
-                ModalSheet().showbottomModalSheet(context, state.sendMoneyError ?? "");
+                ModalSheet().showbottomModalSheet(
+                  context, 
+                  state.sendMoneyError ?? "")
+                ;
               }
             },
             builder: (context, state) {
