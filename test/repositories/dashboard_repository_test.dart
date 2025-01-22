@@ -21,7 +21,7 @@ void main() {
     url = Uri.parse("https://dummyjson.com/c/9860-6649-4bc4-a998");
   });
 
-  test("Dashbpard repository successful wallet balance fecthing", () async {
+  test("Dashboard repository successful wallet balance fecthing", () async {
     when(
       mockClient.get(url, ))
       .thenAnswer((_) async => http.Response(mockData, 201));
@@ -31,7 +31,7 @@ void main() {
     expect(dashboardResponse.wallatBalance, 2000);
   });
 
-  test("Login repository failed authentication", () async {
+  test("Dashboard repository failed wallet balance fecthing", () async {
     when(
       mockClient.get(url))
       .thenAnswer((_) async => http.Response(mockData, 400));

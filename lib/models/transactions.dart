@@ -1,13 +1,21 @@
-class Transactions {
-  String date;
-  List<TransactionDetails> transactionDetails;
+import 'package:equatable/equatable.dart';
 
-  Transactions(this.date, this.transactionDetails);
+class Transactions extends Equatable {
+  final String date;
+  final List<TransactionDetails> transactionDetails;
+
+  const Transactions(this.date, this.transactionDetails);
+  
+  @override
+  List<Object?> get props => [date, transactionDetails];
 }
 
-class TransactionDetails {
-  String name;
-  String amount;
+class TransactionDetails extends Equatable {
+  final String name;
+  final String amount;
 
-  TransactionDetails(this.name, this.amount);
+  const TransactionDetails(this.name, this.amount);
+  
+  @override
+  List<Object?> get props => [name, amount];
 }

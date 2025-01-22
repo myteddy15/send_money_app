@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Send Money app',
       theme: ThemeData(
         primaryColor: const Color(0xff00b464),
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xff00b464)),
@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true
       ),
-      initialRoute: NavRoutes.viewTransactions,
+      initialRoute: NavRoutes.login,
       routes: {
         NavRoutes.login : (context) => LoginScreen(),
         NavRoutes.dashboard : (context) => DashboardScreen(),
