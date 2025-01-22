@@ -22,7 +22,16 @@ class DashboardScreen extends StatelessWidget {
     final dashboardCubit = DashboardCubit(dashboardRepository);
 
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        actions: [
+          IconButton(
+            icon: const FaIcon(FontAwesomeIcons.arrowRightFromBracket),
+            onPressed: () {
+              Navigator.pushNamedAndRemoveUntil(context, NavRoutes.login, (route) => false);
+            },
+          ),
+        ],
+      ),
       body: BlocProvider(
         create: (context) => dashboardCubit..fetchWalletBalance(),
         child: Padding(

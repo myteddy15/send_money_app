@@ -10,6 +10,7 @@ import 'package:send_money_app/views/widgets/header_text.dart';
 import 'package:http/http.dart' as http;
 
 import '../../utils/modal_sheet.dart';
+import '../../utils/nav_routes.dart';
 import '../widgets/custom_elavated_button.dart';
 import '../widgets/custom_text_field.dart';
 
@@ -27,7 +28,16 @@ class SendMoneyScreen extends StatelessWidget {
     final sendMoneyController = TextEditingController();
 
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        actions: [
+          IconButton(
+            icon: const FaIcon(FontAwesomeIcons.arrowRightFromBracket),
+            onPressed: () {
+              Navigator.pushNamedAndRemoveUntil(context, NavRoutes.login, (route) => false);
+            },
+          ),
+        ],
+      ),
       body: BlocProvider(
         create: (context) => sendMoneyCubit,
         child: Padding(
