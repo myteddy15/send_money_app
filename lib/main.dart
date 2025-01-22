@@ -36,12 +36,12 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true
       ),
-      initialRoute: NavRoutes.sendMoney,
+      initialRoute: NavRoutes.viewTransactions,
       routes: {
         NavRoutes.login : (context) => LoginScreen(),
         NavRoutes.dashboard : (context) => DashboardScreen(),
         NavRoutes.sendMoney : (context) => SendMoneyScreen(),
-        NavRoutes.viewTransactions : (context) => const ViewTransactionsScreen()
+        NavRoutes.viewTransactions : (context) => ViewTransactionsScreen()
       },
     );
   }

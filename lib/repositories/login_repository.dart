@@ -9,7 +9,6 @@ abstract class LoginRepository {
 }
 
 class LoginRepositoryImpl extends LoginRepository{
-
   http.Client httpClient;
 
   LoginRepositoryImpl(this.httpClient);

@@ -8,14 +8,13 @@ abstract class DashboardRepository {
 }
 
 class DashboardRepositoryImpl extends DashboardRepository {
-
   http.Client httpClient;
 
   DashboardRepositoryImpl(this.httpClient);
 
+  @override
   Future<DashboardResponse> fetchWalletBalance() async {
     final url = Uri.parse("https://dummyjson.com/c/9860-6649-4bc4-a998");
-
     final response = await httpClient.get(url);
 
     if (response.statusCode >= 200 && response.statusCode < 300) {

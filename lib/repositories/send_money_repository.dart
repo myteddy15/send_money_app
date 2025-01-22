@@ -9,7 +9,6 @@ abstract class SendMoneyRepository {
 }
 
 class SendMoneyRepositoryImpl extends SendMoneyRepository{
-
   http.Client httpClient;
 
   SendMoneyRepositoryImpl(this.httpClient);
